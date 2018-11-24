@@ -7,6 +7,8 @@ Windows desktop application for tracking computer usage, more info [here](http:/
 
 Written by [Marko Devcic](http://www.markodevcic.com)
 
+Install "Blend for Visual Studio SDK for .NET", which you can find on the "Individual components" page, under the "SDKs, libraries, and frameworks" heading.
+
 ### License
 
 [CC-4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)
