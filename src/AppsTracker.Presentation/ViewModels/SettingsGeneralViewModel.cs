@@ -111,7 +111,7 @@ namespace AppsTracker.ViewModels
                     ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
                 if (!Settings.RunAtStartup)
                 {
-                    key.SetValue("app service", System.Reflection.Assembly.GetExecutingAssembly().Location + " -autostart");
+                    key.SetValue("AppsTracker", System.Reflection.Assembly.GetEntryAssembly().Location + " -autostart");
                     Settings.RunAtStartup = true;
                 }
                 else
