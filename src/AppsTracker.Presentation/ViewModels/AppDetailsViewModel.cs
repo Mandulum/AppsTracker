@@ -54,6 +54,15 @@ namespace AppsTracker.ViewModels
         }
 
 
+        private string selectedAppsTotalDuration;
+
+        public string SelectedAppsTotalDuration
+        {
+            get { return selectedAppsTotalDuration; }
+            set { SetPropertyValue(ref selectedAppsTotalDuration, value); }
+        }
+
+
         private string selectedWindowsDuration;
 
         public string SelectedWindowsDuration
@@ -225,6 +234,10 @@ namespace AppsTracker.ViewModels
             if (AppSummaryList.Result == null)
                 return;
 
+            long totalTicks = AppSummaryList.Result.Sum(x => x.Duration);
+            var timeSpan = new TimeSpan(totalTicks);
+            SelectedAppsTotalDuration = string.Format("Total: {0:D2}:{1:D2}:{2:D2}", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
+
             long ticks = 0;
             var selectedApps = AppSummaryList.Result.Where(a => a.IsSelected);
 
@@ -240,7 +253,7 @@ namespace AppsTracker.ViewModels
             if (ticks == 0)
                 return;
 
-            var timeSpan = new TimeSpan(ticks);
+            timeSpan = new TimeSpan(ticks);
             SelectedAppsDuration = string.Format("Selected: {0:D2}:{1:D2}:{2:D2}", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
             windowSummaryList.Reload();
         }

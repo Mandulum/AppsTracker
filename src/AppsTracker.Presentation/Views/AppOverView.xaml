@@ -165,7 +165,13 @@
                Content="{Binding SelectedAppsDuration}"
                Grid.Row="2"
                Grid.Column="0"
-               Margin="10,5,20,0"
+               Margin="0,2,20,3"
+               HorizontalAlignment="Right" />
+
+        <Label Style="{DynamicResource LabelStyle}"
+               Content="{Binding SelectedAppsTotalDuration}"
+               Grid.Row="2"
+               Margin="0,2,269,3"
                HorizontalAlignment="Right" />
 
         <Label Style="{DynamicResource LabelStyle}"
