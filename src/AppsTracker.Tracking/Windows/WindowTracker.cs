@@ -71,6 +71,13 @@ namespace AppsTracker.Tracking
         {
             if (activeLog != null)
             {
+                var app = GetExistingApp(activeLog.ApplicationId);
+                if (app != null)
+                {
+                    app.LastUpdated = DateTime.UtcNow;
+                    repository.SaveModifiedEntity(app);
+                }
+
                 activeLog.Finish();
                 repository.SaveModifiedEntity(activeLog);
                 activeLog = null;
@@ -94,6 +101,7 @@ namespace AppsTracker.Tracking
                 UtcDateCreated = logInfo.UtcStart,
                 DateEnded = logInfo.End,
                 UtcDateEnded = logInfo.UtcEnd,
+                ApplicationId = window.ApplicationID
             };
 
             repository.SaveNewEntity(log);
@@ -119,6 +127,18 @@ namespace AppsTracker.Tracking
                 app.UserID = trackingService.UserID;
                 repository.SaveNewEntity(app);
                 isNewApp = true;
+            }
+            return app;
+        }
+
+        private Aplication GetExistingApp(int appId)
+        {
+            var appList = repository.GetFiltered<Aplication>(a => a.UserID == trackingService.UserID
+                                                                        && a.ID == appId);
+            var app = appList.FirstOrDefault();
+            if (app == null)
+            {
+                throw new Exception("Matching app not found");
             }
             return app;
         }

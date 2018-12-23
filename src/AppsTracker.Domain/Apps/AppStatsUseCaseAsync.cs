@@ -28,6 +28,7 @@ namespace AppsTracker.Domain.Apps
                                                                 && a.Windows.SelectMany(w => w.Logs).Where(l => l.DateCreated >= trackingService.DateFrom).Any()
                                                                 && a.Windows.SelectMany(w => w.Logs).Where(l => l.DateCreated <= trackingService.DateTo).Any()))
                                                            .Distinct()
+                                                           .OrderByDescending(a => a.LastUpdated)
                                                            .Select(a => new AppModel(a));
         }
     }

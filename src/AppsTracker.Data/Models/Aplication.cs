@@ -6,6 +6,7 @@
  */
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -31,6 +32,7 @@ namespace AppsTracker.Data.Models
             this.Description = description.Truncate(150);
             this.Company = company.Truncate(150);
             this.WinName = realName.Truncate(100);
+            this.LastUpdated = DateTime.UtcNow;
         }
 
         [Key]
@@ -59,6 +61,9 @@ namespace AppsTracker.Data.Models
 
         [StringLength(100)]
         public string WinName { get; set; }
+
+        [Required]
+        public DateTime LastUpdated { get; set; }
 
         [ForeignKey("UserID")]
         public virtual Uzer User { get; set; }

@@ -24,6 +24,9 @@ namespace AppsTracker.Data.Models
             }
         }
 
+        [NotMapped]
+        public int ApplicationId { get; set; }
+
         public Log()
         {
             this.Screenshots = new HashSet<Screenshot>();

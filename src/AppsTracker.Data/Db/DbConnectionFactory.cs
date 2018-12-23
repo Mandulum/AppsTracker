@@ -17,7 +17,7 @@ namespace AppsTracker.Data.Db
 
             SqlCeConnectionStringBuilder sqlBuilder = new SqlCeConnectionStringBuilder
             {
-                DataSource = Path.Combine(directoryPath, "appsdb.sdf"),
+                DataSource = Path.Combine(directoryPath, "appstrackerdb.sdf"),
                 MaxDatabaseSize = 4000,
                 DefaultLockTimeout = 10000
             };
